@@ -35,7 +35,10 @@
 <body>
 <div class="login-form">
     <form id="myform">
-        <h2 class="text-center">Odontologia</h2>       
+        <h2 class="text-center">Odontologia</h2> 
+        <div class="form-group">
+            <input type="text" id="username" class="form-control" placeholder="Username" required="required">
+        </div>      
         <div class="form-group">
             <input type="text" id="email" class="form-control" placeholder="Email" required="required">
         </div>
@@ -43,15 +46,8 @@
             <input type="password" id="password" class="form-control" placeholder="senha" required="required">
         </div>
         <div class="form-group">
-            <button type="submit" id="login" class="btn btn-primary btn-block">Entrar</button>
-        </div>
-        <div class="clearfix">
-            <label class="pull-left checkbox-inline"><input type="checkbox"> Relembrar</label>
-            <a href="#" class="pull-right">Esqueceu a senha?</a>
-        </div>
-        <div class="Cadastro">
-            <a href="/criar" class="pull-right">Criar Login!</a>
-        </div>          
+            <button type="submit" id="criar" class="btn btn-primary btn-block">Criar</button>
+        </div>      
 </div>
 <script>
     $(document).ready(function() {
@@ -60,8 +56,9 @@
 
             $.ajax({
                 type: "POST",
-                url: 'http://127.0.0.1:3333/authenticate',
+                url: 'http://127.0.0.1:3333/criar',
                 data: {
+                    username: $("#username").val(),
                     email: $("#email").val(),
                     password: $("#password").val()
                 },

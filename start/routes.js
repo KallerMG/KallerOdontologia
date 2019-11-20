@@ -16,13 +16,16 @@
 /** @type {typeof import('@adonisjs/framework/src/Route/Manager')} */
 const Route = use('Route')
 
-Route.get('/', () => {
-  return { greeting: 'Hello world in JSON' }
-})
 
-Route.post('/register', 'AuthController.register');
+
+Route.post('/criar', 'AuthController.register');
 Route.post('/authenticate', 'AuthController.authenticate');
 Route.get('/app', "AppController.index" ).middleware(["auth"]);
-Route.get('/pagina', ({ view }) => {
+Route.get('/', ({ view }) => {
   return view.render('pagina')
 })
+Route.get('/criar', ({ view }) => {
+  return view.render('criar')
+})
+Route.post('/pasciente', 'PacienteController.cadastrar');
+Route.post('/anamnese', 'AnamneseController.cadastrar');
