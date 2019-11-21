@@ -29,3 +29,10 @@ Route.get('/criar', ({ view }) => {
 })
 Route.post('/pasciente', 'PacienteController.cadastrar');
 Route.post('/anamnese', 'AnamneseController.cadastrar');
+Route.put('/user/:id', 'AuthController.atualizar');
+Route.delete('/user/:id', 'AuthController.deletar');
+Route.get('/pasciente', 'PacienteController.mostrar');
+Route.delete('/pasciente/:id', 'PacienteController.deletar');
+Route.put('/pasciente/:id', 'PacienteController.atualizar');
+Route.get('/anamnese/:id', 'AnamneseController.mostraranam');
+Route.delete('/anamnese/:id', 'AnamneseController.deletar');

@@ -4,22 +4,42 @@ const User = use('App/Models/User')
 class AuthController {
     
     async register({ request }){
-        const data = request.only(['username', 'email', 'password'])
+        var clas = 'aluno'
+        const data = request.only(['username', 'email', 'password', clas])
     
          const user = await User.create(data)
             
-        return 
+        return "sucesso"
 
     }
     
     async authenticate({ request, auth }){
         const{ email, password} = request.all()
+        if (  request.classe = "professor"){
+            const token = await auth.attempt(email, password)
 
-        const token = await auth.attempt(email, password)
+            return {token ,classe: request.classe}
+        }else{
+            return {token ,classe: request.classe}
+        }
+    }
 
-        return token + "logou caralhooooo"
-    } 
+    async atualizar({ params, request, response }) {
+        const user = await User.findOrFail(params.id);
+        const data = request.only(["username", "email"]);
+    
+        user.merge(data);
+        await user.save();
+
+        return user
+    }
+    async deletar({ params }) {
+        const user = await User.findOrFail(params.id);
+        await user.delete();
+    }
+
     
 }
 
 module.exports = AuthController
+

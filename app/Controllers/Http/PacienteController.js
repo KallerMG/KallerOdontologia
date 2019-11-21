@@ -1,5 +1,6 @@
 'use strict'
 const User = use('App/Models/Paciente')
+const Database = use('Database')
 
 class AuthController {
     
@@ -11,14 +12,29 @@ class AuthController {
         return user
 
     }
+
+    async atualizar({ params, request, response }) {
+        const user = await User.findOrFail(params.id);
+        const data = request.only(["nome", "email","endereco"]);
     
-    async authenticate({ request, auth }){
-        const{ email, password} = request.all()
+        user.merge(data);
+        await user.save();
 
-        const token = await auth.attempt(email, password)
+        return user
+    }
+    async deletar({ params }) {
+        const user2 = await Database.table('anamnese').where('id_paciente', params.id).delete()
+        const user = await User.findOrFail(params.id);
+        await user.delete();
+    }
 
-        return token + "logou caralhooooo"
-    } 
+    async mostrar ({ params }) {
+        const user = await User.all();
+    
+        return user;
+      
+      }
+    
     
 }
 
