@@ -65,19 +65,15 @@
                     email: $("#email").val(),
                     password: $("#password").val()
                 },
+                dataType: "json",
                 success: function(data)
                 {
-                    if (data === 'Correct') {
-                        
-                    }
-                    else {
-                        alert(data);
-                    }
+                    console.log(data);
+                    window.location
+                    window.location.href = data.url.url;
                 }
             });
-            //this is mandatory other wise your from will be submitted.
-            return false; 
-        });
+});
 
 });
 </script>
