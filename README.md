@@ -13,6 +13,14 @@ Rode o seguinte comadando para instalar as dependências  `npm install`.
 Para começar a usar
 
 ```bash
+npm install
+```
+
+```bash
+npm install mysql
+```
+
+```bash
 adonis serve --dev
 ```
 
